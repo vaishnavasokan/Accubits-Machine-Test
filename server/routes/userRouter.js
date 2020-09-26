@@ -49,9 +49,8 @@ router.post("/login", function (req, res) {
 router.get("/getUserDetails", function (req, res) {
     console.log("req.body   : ", req.body);
     user.findOne({ _id: req.body._id }, function (err, result) {
-        if (err) {
-            throw err;
-        }
+        if (err)
+            res.send({ message: "User Not found!", status: 500 });
         else {
             const userData = result
             res.send({ responseArray: { userData: userData }, status: 200 });
